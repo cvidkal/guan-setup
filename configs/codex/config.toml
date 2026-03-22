@@ -1,0 +1,9 @@
+model = "gpt-5.4"
+[projects."/Users/cc"]
+trust_level = "trusted"
+
+[projects."/Users/cc/Codes/GUAN-Framework"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"

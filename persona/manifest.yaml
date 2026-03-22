@@ -1,0 +1,56 @@
+schema_version: "1.3"
+framework: "GUAN Framework"
+persona_root: "/Users/cc/persona"
+projects_root: "/Users/cc/Codes"
+
+reference_documents:
+  cognitive_copilot: "framework/GUAN-Framework-Cognitive-Copilot.md"
+  multi_llm_orchestration: "framework/GUAN-Framework-Multi-LLM-Orchestration.md"
+  setup_sop: "framework/GUAN-Setup-SOP.md"
+
+startup_rule: |
+  On each new session:
+  1. Read core/boot.md
+  2. Read this manifest
+  3. Read latest session log
+  4. Read core/projects-overview.md for project list
+  5. Enable semi-automatic cognitive collection
+
+write_policy:
+  canonical_write_mode: proposal_then_merge
+  direct_card_creation: false
+  override_keyword: "立即入库"
+  max_new_cards_per_save: 1
+  max_card_updates_per_save: 2
+
+cognitive_collection:
+  mode: "semi-automatic"
+  trigger_conditions:
+    - "User makes important decision"
+    - "User describes new working pattern"
+    - "User learns from a mistake"
+    - "User expresses new principle"
+    - "User behavior contradicts existing card"
+  prompt_format: "💾 Cognitive collection suggestion: [description] — Save as card?"
+
+loading_rules:
+  always_load:
+    - core/boot.md
+    - core/principles.md
+    - core/challenge-core.md
+  on_demand:
+    - cards/
+    - framework/
+  never_auto_load:
+    - proposals/
+    - archive/
+
+review_cadence:
+  stable: "no automatic decay"
+  adaptive: "every 60-90 days"
+  volatile: "every 14-30 days"
+
+slash_commands:
+  /boot: "Initialize session, load context, check agent health"
+  /save: "Save session, evaluate cognition, write log, commit"
+  /status: "View persona and project status overview"

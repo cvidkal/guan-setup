@@ -1,0 +1,2 @@
+# Synonym normalization table for /save dedup matching
+# Format: canonical_term: [alias1, alias2, ...]
